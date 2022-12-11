@@ -12,10 +12,6 @@ class ActivityModule(private val activity: Context) {
 
     @Provides
     @ActivityScope
-    fun provideStyleManager() = activity as StyleManager
-
-    @Provides
-    @ActivityScope
     fun provideSnackBarManager() = activity as SnackBarManager
 
     @Provides

@@ -25,7 +25,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 
-class AppActivity : AppCompatActivity(), NavigationStartApp, NavigationContent, StyleManager,
+class AppActivity : AppCompatActivity(), NavigationStartApp, NavigationContent,
     NavigationAuth, SnackBarManager, PermissionManager, FileManager, InputModeManager {
 
     private val navController: NavController by lazy {
@@ -53,11 +53,6 @@ class AppActivity : AppCompatActivity(), NavigationStartApp, NavigationContent, 
 
     override fun startContentScreen() {
         navController.navigate(R.id.action_authFragment_to_tabFragment)
-    }
-
-    override fun setColorStatusBar(color: Int) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(color)
     }
 
     override fun startAuthScreen() {

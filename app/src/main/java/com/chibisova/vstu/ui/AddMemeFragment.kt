@@ -48,9 +48,6 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     }
 
     @Inject
-    lateinit var styleManager: StyleManager
-
-    @Inject
     lateinit var snackBarManager: SnackBarManager
 
     @Inject
@@ -74,7 +71,6 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        styleManager.setColorStatusBar(R.color.colorPrimaryContent)
         return inflater.inflate(R.layout.fragment_add_meme, container, false)
     }
 
@@ -86,6 +82,7 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
 
     private fun initToolbar(view: View) {
         add_meme_toolbar.navigationIcon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_close) }
+        add_meme_toolbar.title = ""
         (activity as AppCompatActivity).setSupportActionBar(add_meme_toolbar)
         add_meme_toolbar.setNavigationOnClickListener { navBack.back() }
     }
@@ -166,19 +163,17 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     }
 
     override fun disableCreateMemeBtn() {
-        create_meme_btn.setTextColor(resources.getColor(R.color.colorAccentTransparent))
-        create_meme_btn.isClickable = false
+        create_meme_btn.isEnabled = false
     }
 
     override fun enableCreateMemeBtn() {
-        create_meme_btn.setTextColor(resources.getColor(R.color.colorAccent))
-        create_meme_btn.isClickable = true
+        create_meme_btn.isEnabled = true
     }
 
     override fun showAddImgDialog() {
         val addImgDialog = AddImgDialog()
         addImgDialog.setTargetFragment(this, REQUEST_DIALOG_WAY_GET_IMG)
-        fragmentManager?.let {
+        childFragmentManager?.let {
             addImgDialog.show(it, EXTRA_WAY_GET_IMG)
         }
     }

@@ -7,12 +7,12 @@ import android.view.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.chibisova.vstu.App
 import com.chibisova.vstu.R
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.SnackBarManager
-import com.chibisova.vstu.common.managers.StyleManager
 import com.chibisova.vstu.ui.controllers.MemeController
 import com.chibisova.vstu.domain.model.Meme
 import com.chibisova.vstu.domain.model.User
@@ -35,9 +35,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
     private val presenter by moxyPresenter {
         presenterProvider.get()
     }
-
-    @Inject
-    lateinit var styleManager: StyleManager
 
     @Inject
     lateinit var snackBarManager: SnackBarManager
@@ -65,7 +62,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        styleManager.setColorStatusBar(R.color.colorPrimary)
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
@@ -87,10 +83,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         }
         with(meme_list_profile_rv) {
             adapter = easyAdapter
-            layoutManager = androidx.recyclerview.widget.StaggeredGridLayoutManager(
-                2,
-                androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
-            )
+            layoutManager = LinearLayoutManager(context)
         }
     }
 

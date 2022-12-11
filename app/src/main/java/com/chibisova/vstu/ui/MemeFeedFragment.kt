@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chibisova.vstu.App
 import com.chibisova.vstu.R
@@ -17,7 +16,6 @@ import com.chibisova.vstu.common.RefresherOwner
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.InputModeManager
 import com.chibisova.vstu.common.managers.SnackBarManager
-import com.chibisova.vstu.common.managers.StyleManager
 import com.chibisova.vstu.ui.controllers.MemeController
 import com.chibisova.vstu.domain.model.Meme
 import com.chibisova.vstu.navigation.NavigationMemeDetails
@@ -43,9 +41,6 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
 
 
     @Inject
-    lateinit var styleManager: StyleManager
-
-    @Inject
     lateinit var inputModeManager: InputModeManager
 
     @Inject
@@ -69,7 +64,6 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        styleManager.setColorStatusBar(R.color.colorPrimaryContent)
         return inflater.inflate(R.layout.fragment_meme_feed, container, false)
     }
 

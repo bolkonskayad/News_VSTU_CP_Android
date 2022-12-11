@@ -14,6 +14,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/profile_toolbar"
         style="@style/ToolbarDark"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

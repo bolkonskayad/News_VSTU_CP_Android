@@ -16,26 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="horizontal">
-
             <Button
                 android:id="@+id/create_meme_btn"
                 style="@style/CreateBtn"
+                android:layout_gravity="end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/create_news_state_list_btn"
                 android:layout_marginEnd="@dimen/small_margin"
                 android:text="@string/addMeme_create_btn" />
 
-        </LinearLayout>
-
-
     </androidx.appcompat.widget.Toolbar>
-
 
     <ScrollView
         android:layout_width="0dp"

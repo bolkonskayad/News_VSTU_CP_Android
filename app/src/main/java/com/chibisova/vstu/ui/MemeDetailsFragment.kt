@@ -12,7 +12,6 @@ import com.chibisova.vstu.App
 import com.chibisova.vstu.R
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.BottomBarVisible
-import com.chibisova.vstu.common.managers.StyleManager
 import com.chibisova.vstu.navigation.NavigationBackPressed
 import com.chibisova.vstu.domain.model.Meme
 import com.chibisova.vstu.domain.model.User
@@ -32,9 +31,6 @@ class MemeDetailsFragment : BaseFragment(), MemeDetailsView {
     private val presenter by moxyPresenter { presenterProvider.get() }
 
     @Inject
-    lateinit var styleManager: StyleManager
-
-    @Inject
     lateinit var navBack: NavigationBackPressed
 
     @Inject
@@ -45,7 +41,6 @@ class MemeDetailsFragment : BaseFragment(), MemeDetailsView {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         App.instance.getFragmentContentComponentOrCreateIfNull().inject(this)
-        styleManager.setColorStatusBar(R.color.colorPrimaryContent)
     }
 
     override fun onCreateView(
