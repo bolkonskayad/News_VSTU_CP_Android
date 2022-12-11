@@ -11,6 +11,9 @@ import com.chibisova.vstu.utils.KeyboardUtil
 import kotlinx.android.synthetic.main.view_serach_toolbar.view.*
 
 
+/**
+ * Кастомная вью, которая представляет собой тулбар с поиском
+ */
 class ToolbarSearchView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

@@ -4,6 +4,9 @@ import androidx.room.*
 import com.chibisova.vstu.data.dto.local.NewsDbo
 
 
+/**
+ * Интерфейс для таблицы новостей. С помощью методов можно управлять таблицей NewsDao
+ */
 @Dao
 interface NewsDao {
 

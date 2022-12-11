@@ -13,6 +13,9 @@ import com.chibisova.vstu.common.params.EXTRA_WAY_GET_IMG
 import kotlinx.android.synthetic.main.dialog_add_img.*
 
 
+/**
+ * ДИалог добавления фотографии к новости
+ */
 class AddImgDialog: DialogFragment() {
 
     companion object{

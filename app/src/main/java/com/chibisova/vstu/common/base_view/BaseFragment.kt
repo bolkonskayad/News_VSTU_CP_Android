@@ -5,8 +5,10 @@ import android.view.View
 import androidx.appcompat.app.ActionBar
 import moxy.MvpAppCompatFragment
 
-
-//Если ты, дорогой путник сюда добрался, то знай. этот фрагмент я создал, чтобы очищать потоки в презентере
+/**
+ * базовый фрагмент, унаследоанный от MvpAppCompatFragment
+ * вызывает метод setHasOptionsMenu для показа меню(три точки на экране профиля)
+ */
 abstract class BaseFragment: MvpAppCompatFragment()  {
 
 

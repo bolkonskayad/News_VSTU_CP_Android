@@ -36,6 +36,9 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 
+/**
+ * Фрагмент добавления новости
+ */
 class AddNewsFragment : BaseFragment(), AddNewView, View.OnClickListener {
 
     companion object {

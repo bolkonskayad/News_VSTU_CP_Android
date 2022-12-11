@@ -23,7 +23,9 @@ import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 import javax.inject.Provider
 
-
+/**
+ * Фрагмент детальной информации новости
+ */
 class NewsDetailsFragment : BaseFragment(), NewDetailsView {
 
     @Inject

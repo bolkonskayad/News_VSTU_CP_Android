@@ -22,6 +22,9 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 
+/**
+ * Фрагмент авторизации
+ */
 class AuthFragment : BaseFragment(), AuthView {
 
     @Inject

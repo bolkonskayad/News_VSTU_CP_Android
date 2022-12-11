@@ -28,7 +28,9 @@ import ru.surfstudio.android.easyadapter.ItemList
 import javax.inject.Inject
 import javax.inject.Provider
 
-
+/**
+ * Экран профиля
+ */
 class ProfileFragment : BaseFragment(), ProfileView {
 
     @Inject

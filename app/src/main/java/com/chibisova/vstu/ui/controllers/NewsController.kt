@@ -12,6 +12,10 @@ import com.chibisova.vstu.domain.model.News
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
+/**
+ * Контроллер библиотеки easyAdapter
+ * Выполняет отрисовку элемента списка
+ */
 class NewsController: BindableItemController<News, NewsController.Holder>() {
 
     var newsDetailsClickListener: ((News) -> Unit) = {}

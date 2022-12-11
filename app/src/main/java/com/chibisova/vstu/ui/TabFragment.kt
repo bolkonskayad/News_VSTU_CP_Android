@@ -14,6 +14,9 @@ import com.chibisova.vstu.navigation.NavigationBackPressed
 import com.chibisova.vstu.navigation.NavigationNewDetails
 import kotlinx.android.synthetic.main.fragment_tab.*
 
+/**
+ * Фрагмент, который содержит контейнер для других фрагментов и нижнее навигационное меню
+ */
 class TabFragment : Fragment(), NavigationBackPressed, NavigationNewDetails, BottomBarVisible {
 
     companion object {

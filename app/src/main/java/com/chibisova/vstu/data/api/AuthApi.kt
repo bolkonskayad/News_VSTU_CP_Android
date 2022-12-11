@@ -8,6 +8,10 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+/**
+ * Интерфейс для ретрофита. По сути реализует http запросы
+ * Данный интерфейс для авторизации нужен
+ */
 interface AuthApi {
 
     @POST("auth/login")
