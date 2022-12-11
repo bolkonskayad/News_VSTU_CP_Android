@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Surf Education</string>
+    <string name="app_name">VSTU news</string>
     <string name="auth_login_hint">Логин</string>
     <string name="auth_password_hint">Пароль</string>
     <string name="auth_loginIn_btn">Войти</string>
