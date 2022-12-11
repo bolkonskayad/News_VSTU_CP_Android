@@ -1,0 +1,17 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:itemBackground">@color/colorPrimaryContent</item>
+        <item name="android:actionMenuTextColor">@color/colorAccent</item>
+
+        <item name="alertDialogTheme">@style/SerfAlertDialog</item>
+
+    </style>
+
+
+
+</resources>

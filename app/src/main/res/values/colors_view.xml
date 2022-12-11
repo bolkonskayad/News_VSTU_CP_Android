@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorTransparentThreeDarkBackground">#75000000</color>
+    <color name="colorTransparentDarkBackground">#50000000</color>
+    <color name="colorTransparentQuarterDartBackground">#25000000</color>
+    <color name="colorAccentTransparent">#2003DAC5</color>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AuthBtn" parent="TextAppearance.AppCompat.Widget.Button">
+        <item name="android:background">@drawable/ripple</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/standard_text_size</item>
+    </style>
+
+    <style name="CreateBtn" parent="TextAppearance.AppCompat.Widget.Button">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/standard_text_size</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
+    <style name="EnableCreateMemeBtn" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:enabled">true</item>
+    </style>
+
+    <style name="CustomAuthBtn" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorAccent</item>
+    </style>
+
+    <style name="DisableCreateMemeBtn" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorAccentTransparent</item>
+        <item name="android:enabled">true</item>
+    </style>
+
+
+    <style name="FavoriteCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox_favorite</item>
+    </style>
+
+    <style name="ShareCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/ic_share</item>
+    </style>
+
+</resources>

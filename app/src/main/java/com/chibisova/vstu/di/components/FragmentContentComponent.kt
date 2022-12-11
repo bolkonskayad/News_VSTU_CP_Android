@@ -1,0 +1,27 @@
+package com.chibisova.vstu.di.components
+
+import com.chibisova.vstu.di.modules.content_modules.AdapterUtilsModule
+import com.chibisova.vstu.di.modules.content_modules.PresenterContentModule
+import com.chibisova.vstu.di.modules.content_modules.RepositoryContentModule
+import com.chibisova.vstu.di.modules.content_modules.TabModule
+import com.chibisova.vstu.di.scopes.FragmentContentScope
+import com.chibisova.vstu.ui.*
+import dagger.Subcomponent
+
+
+@FragmentContentScope
+@Subcomponent(
+    modules = [PresenterContentModule::class, AdapterUtilsModule::class,
+        RepositoryContentModule::class, TabModule::class]
+)
+interface FragmentContentComponent {
+
+    fun inject(addMemeFragment: AddMemeFragment)
+
+    fun inject(memeDetailsFragment: MemeDetailsFragment)
+
+    fun inject(memeFeedFragment: MemeFeedFragment)
+
+    fun inject(profileFragment: ProfileFragment)
+
+}
