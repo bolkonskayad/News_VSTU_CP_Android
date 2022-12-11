@@ -16,4 +16,5 @@ interface Storage {
 
     fun getUserNews(): Single<List<News>>
 
+    fun deleteNews(news: News): Completable
 }

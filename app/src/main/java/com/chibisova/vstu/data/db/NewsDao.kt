@@ -23,9 +23,9 @@ interface NewsDao {
     fun getNewById(id: Int): NewsDbo
 
     @Update
-    fun update(NewsDbo: NewsDbo)
+    fun update(newsDbo: NewsDbo)
 
-    @Delete
-    fun delete(NewsDbo: NewsDbo)
+    @Query("DELETE FROM NewsDbo WHERE title = :title")
+    fun deleteByTitle(title: String)
 
 }

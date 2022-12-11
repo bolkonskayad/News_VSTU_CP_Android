@@ -7,7 +7,6 @@ import com.chibisova.vstu.di.modules.activity_modules.ActivityModule
 import com.chibisova.vstu.di.modules.activity_modules.NavigationMainModule
 import com.chibisova.vstu.di.modules.app_modules.*
 import com.chibisova.vstu.di.modules.auth_modules.PresenterAuthModule
-import com.chibisova.vstu.di.modules.content_modules.AdapterUtilsModule
 import com.chibisova.vstu.di.modules.content_modules.PresenterContentModule
 import com.chibisova.vstu.di.modules.content_modules.RepositoryContentModule
 import com.chibisova.vstu.di.modules.content_modules.TabModule
@@ -68,7 +67,6 @@ class App : Application() {
         if (fragmentContentComponent == null && tabFragment != null) {
             fragmentContentComponent = activityComponent?.addFragmentContentComponent(
                 PresenterContentModule(),
-                AdapterUtilsModule(),
                 RepositoryContentModule(),
                 TabModule(tabFragment)
             )

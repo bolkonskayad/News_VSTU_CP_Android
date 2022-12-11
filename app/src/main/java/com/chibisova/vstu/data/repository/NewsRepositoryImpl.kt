@@ -6,6 +6,7 @@ import com.chibisova.vstu.data.dto.network.NetworkNews
 import com.chibisova.vstu.data.storage.Storage
 import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.domain.repository.NewsRepository
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
@@ -29,8 +30,10 @@ class NewsRepositoryImpl @Inject constructor(
     //Получаем список новостей, созданных локально
     override fun getUserNews(): Single<List<News>> = storage.getUserNews()
 
-    override fun addNews(News: News) = storage.insertUserNew(News)
+    override fun addNews(news: News) = storage.insertUserNew(news)
 
-
+    override fun deleteNews(news: News): Completable {
+        return storage.deleteNews(news)
+    }
 }
 

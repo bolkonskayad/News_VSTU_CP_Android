@@ -1,6 +1,5 @@
 package com.chibisova.vstu.di.components
 
-import com.chibisova.vstu.di.modules.content_modules.AdapterUtilsModule
 import com.chibisova.vstu.di.modules.activity_modules.NavigationMainModule
 import com.chibisova.vstu.di.modules.content_modules.PresenterContentModule
 import com.chibisova.vstu.di.modules.activity_modules.ActivityModule
@@ -16,7 +15,6 @@ import dagger.Subcomponent
 interface ActivityComponent {
 
     fun addFragmentContentComponent(presenterContentModule: PresenterContentModule,
-                                    adapterUtilsModule: AdapterUtilsModule,
                                     repositoryContentModule: RepositoryContentModule,
                                     tabModule: TabModule
     ): FragmentContentComponent

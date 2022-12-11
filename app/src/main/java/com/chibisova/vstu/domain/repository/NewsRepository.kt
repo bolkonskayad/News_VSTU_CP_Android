@@ -10,6 +10,8 @@ interface NewsRepository {
 
     fun getUserNews(): Single<List<News>>
 
-    fun addNews(News: News): Completable
+    fun addNews(news: News): Completable
+
+    fun deleteNews(news: News): Completable
 
 }

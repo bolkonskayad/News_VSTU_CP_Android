@@ -49,11 +49,9 @@ class NewsFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, N
     @Inject
     lateinit var navNewDetailsFragment: NavigationNewDetails
 
-    @Inject
-    lateinit var easyAdapter: EasyAdapter
+    private val easyAdapter = EasyAdapter()
 
-    @Inject
-    lateinit var newsController: NewsController
+    private val newsController = NewsController()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

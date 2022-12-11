@@ -37,8 +37,14 @@ class StorageImpl @Inject constructor(
         mapper.transformList(dbNewList)
     }.subscribeOn(Schedulers.io())
 
+    override fun deleteNews(news: News): Completable {
+        return Completable.fromCallable {
+            dao.deleteByTitle(news.title)
+        }
+    }
+
     override fun removeNews(): Completable {
-        TODO("Not yet implemented")
+        return Completable.complete()
     }
 
 

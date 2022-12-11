@@ -54,13 +54,19 @@ class ProfilePresenter @Inject constructor(
             })
     }
 
-    fun openDetails(News: News) {
-        viewState.openNewDetails(News)
+    fun openDetails(news: News) {
+        viewState.openNewDetails(news)
     }
 
-    fun shareNewInSocialNetwork(News: News) {
-        viewState.shareNew(News)
+    fun shareNewInSocialNetwork(news: News) {
+        viewState.shareNew(news)
     }
 
 
+    fun deleteNews(news: News) {
+        newsRepository.deleteNews(news)
+            .subscribeOn(io.reactivex.rxjava3.schedulers.Schedulers.io())
+            .subscribe()
+        loadNews()
+    }
 }

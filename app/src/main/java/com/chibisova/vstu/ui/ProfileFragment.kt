@@ -46,11 +46,9 @@ class ProfileFragment : BaseFragment(), ProfileView {
     @Inject
     lateinit var navNewDetailsFragment: NavigationNewDetails
 
-    @Inject
-    lateinit var easyAdapter: EasyAdapter
+    private val easyAdapter = EasyAdapter()
 
-    @Inject
-    lateinit var NewsController: NewsController
+    private val newsController = NewsController()
 
     private var dialogLogout: AlertDialog? = null
 
@@ -78,9 +76,12 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     private fun initView() {
-        NewsController.newsDetailsClickListener = { presenter.openDetails(it) }
-        NewsController.shareClickListener = {
+        newsController.newsDetailsClickListener = { presenter.openDetails(it) }
+        newsController.shareClickListener = {
             presenter.shareNewInSocialNetwork(it)
+        }
+        newsController.deleteClickListener = {
+            presenter.deleteNews(it)
         }
         with(news_list_profile_rv) {
             adapter = easyAdapter
@@ -118,7 +119,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
     override fun showNews(newsList: List<News>) {
         empty_state_text.isVisible = newsList.isEmpty()
         val itemList = ItemList.create().apply {
-            addAll(newsList, NewsController)
+            addAll(newsList, newsController)
         }
         easyAdapter.setItems(itemList)
     }
@@ -172,7 +173,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
     override fun hideLoadState() {
         news_list_profile_rv.visibility = View.VISIBLE
         load_news_pb.visibility = View.GONE
-        empty_state_text.isVisible = true
     }
 
     override fun openNewDetails(data: News) {

@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.chibisova.vstu.R
 import com.chibisova.vstu.domain.model.News
@@ -15,6 +16,8 @@ class NewsController: BindableItemController<News, NewsController.Holder>() {
 
     var newsDetailsClickListener: ((News) -> Unit) = {}
     var shareClickListener: ((News) -> Unit) = {}
+
+    var deleteClickListener: ((News) -> Unit)? = null
 
     override fun createViewHolder(parent: ViewGroup?) = Holder(parent)
 
@@ -28,6 +31,7 @@ class NewsController: BindableItemController<News, NewsController.Holder>() {
         private val naNewme: TextView = itemView.findViewById(R.id.New_name_tv)
         private val favoriteBtn: CheckBox = itemView.findViewById(R.id.favorite_chb)
         private val shareBtn: Button = itemView.findViewById(R.id.share_btn)
+        private val deleteBtn: Button = itemView.findViewById(R.id.delete_news_btn)
 
         override fun bind(data: News) {
             Glide.with(itemView).load(data.photoUrl).into(photoNew)
@@ -35,33 +39,10 @@ class NewsController: BindableItemController<News, NewsController.Holder>() {
             if (data.isFavorite){
                 favoriteBtn.isChecked = true
             }
+            deleteBtn.isVisible = deleteClickListener != null
             itemView.setOnClickListener { newsDetailsClickListener(data) }
             shareBtn.setOnClickListener { shareClickListener(data) }
+            deleteBtn.setOnClickListener { deleteClickListener?.invoke(data) }
         }
     }
 }
-
-/*
-    Те, кто читает мой код явно найдут время для хорошего анекдота
-
-    Идет мужик и видит пастуха, пасущего овец.
-    Мужик:
-    - Уважаемый, добрый день. А сколько ваши овцы дают шерсти за год?
-    - Какие: черные или белые?
-    - Черные.
-    - 2 килограмма.
-    - А белые?
-    - Тоже 2.
-    Удивился мужик, думает: дай, еще чего спрошу...
-    - Уважаемый, а сколько ваши овцы съедают корма в день?
-    - Какие: черные или белые?
-    - Белые.
-    - Килограмм.
-    - А черные?
-    - Тоже килограмм.
-    Мужик растерялся:
-    - Уважаемый, а почему вы все время спрашиваете, какие овцы, хотя результаты одинаковые?
-    - Дык, черные овцы-то мои!
-    - А белые?
-    - Белые? Тоже мои.
- */

@@ -1,6 +1,5 @@
 package com.chibisova.vstu.di.components
 
-import com.chibisova.vstu.di.modules.content_modules.AdapterUtilsModule
 import com.chibisova.vstu.di.modules.content_modules.PresenterContentModule
 import com.chibisova.vstu.di.modules.content_modules.RepositoryContentModule
 import com.chibisova.vstu.di.modules.content_modules.TabModule
@@ -11,7 +10,7 @@ import dagger.Subcomponent
 
 @FragmentContentScope
 @Subcomponent(
-    modules = [PresenterContentModule::class, AdapterUtilsModule::class,
+    modules = [PresenterContentModule::class,
         RepositoryContentModule::class, TabModule::class]
 )
 interface FragmentContentComponent {
