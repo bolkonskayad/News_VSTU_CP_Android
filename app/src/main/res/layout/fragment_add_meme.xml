@@ -60,7 +60,9 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:hint="@string/addMeme_title_hint"
-                    android:textSize="@dimen/large_title_size" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:textSize="26sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +83,9 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:hint="@string/addMeme_description_hint"
-                    android:textSize="@dimen/standard_text_size" />
+                    android:textColor="@color/gray"
+                    android:textColorHint="@color/gray"
+                    android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

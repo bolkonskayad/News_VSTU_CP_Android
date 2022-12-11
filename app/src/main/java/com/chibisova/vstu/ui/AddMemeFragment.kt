@@ -173,7 +173,7 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     override fun showAddImgDialog() {
         val addImgDialog = AddImgDialog()
         addImgDialog.setTargetFragment(this, REQUEST_DIALOG_WAY_GET_IMG)
-        childFragmentManager?.let {
+        fragmentManager?.let {
             addImgDialog.show(it, EXTRA_WAY_GET_IMG)
         }
     }
