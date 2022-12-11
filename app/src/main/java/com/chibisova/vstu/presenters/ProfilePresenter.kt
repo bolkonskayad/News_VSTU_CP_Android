@@ -18,9 +18,9 @@ class ProfilePresenter @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if (it.isEmpty) {
-                    viewState.showProfile(it)
-                } else {
                     viewState.showErrorSnackBarDownloadProfile("Ошибка иннициализации профиля")
+                } else {
+                    viewState.showProfile(it)
                 }
             }, {
                 viewState.showErrorSnackBarDownloadProfile("Повторите попытку")

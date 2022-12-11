@@ -7,6 +7,7 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:itemBackground">@color/colorPrimaryContent</item>
         <item name="android:actionMenuTextColor">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorAccent</item>
         <item name="alertDialogTheme">@style/SerfAlertDialog</item>
     </style>
 </resources>

@@ -22,12 +22,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelText="@string/auth_login_hint"
-            app:primaryColor="@color/colorAccent">
+            app:helperTextColor="@color/gray"
+            app:primaryColor="@color/gray"
+            app:secondaryColor="@color/gray">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/login_input_et"
                 android:singleLine="true"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
+                android:background="@drawable/shadow_field"
                 android:layout_height="wrap_content" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -38,13 +42,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/standard_margin"
             app:labelText="@string/auth_password_hint"
-            app:primaryColor="@color/colorAccent">
+            app:primaryColor="@color/gray"
+            app:secondaryColor="@color/gray">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/password_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
+                android:background="@drawable/shadow_field"
+                android:textColor="@color/black"
                 android:inputType="textPassword" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>

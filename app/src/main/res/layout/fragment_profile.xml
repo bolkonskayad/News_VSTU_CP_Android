@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/standard_margin"
+        android:textColor="@color/black"
         tools:text="Никнейм" />
 
     <TextView
@@ -44,13 +45,14 @@
         android:layout_marginEnd="@dimen/large_margin"
         android:layout_marginBottom="@dimen/large_margin"
         android:gravity="center"
+        android:textColor="@color/black"
         tools:text="A pessimist is a man who thinks everybody is as nasty as himself, and hates them for it." />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height_view"
         android:layout_marginBottom="@dimen/large_margin"
-        android:background="@color/colorPrimaryContent" />
+        android:background="@color/colorAccent" />
 
     <FrameLayout
         android:layout_width="match_parent"

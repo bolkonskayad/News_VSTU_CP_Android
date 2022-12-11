@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,8 +9,8 @@
     <com.chibisova.vstu.ui.custom_view.ToolbarSearchView
         android:id="@+id/meme_feed_Stoolbar"
         android:layout_width="match_parent"
-        app:titleToolbar="@string/meme_feed_title_toolbar_text"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:titleToolbar="@string/meme_feed_title_toolbar_text" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -29,8 +28,6 @@
                 android:layout_height="@dimen/size_progress_bar"
                 android:layout_gravity="center" />
         </FrameLayout>
-
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_container"
             android:layout_width="match_parent"

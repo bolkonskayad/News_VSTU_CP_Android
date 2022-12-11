@@ -48,7 +48,6 @@ class AuthFragment : BaseFragment(), AuthView {
         return inflater.inflate(R.layout.fragment_auth, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
