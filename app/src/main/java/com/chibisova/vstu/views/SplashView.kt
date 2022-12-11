@@ -6,9 +6,6 @@ import moxy.viewstate.strategy.alias.Skip
 interface SplashView: MvpView {
 
     @Skip
-    fun startAnimation()
-
-    @Skip
     fun startApp(isAuthUser: Boolean)
 
 }

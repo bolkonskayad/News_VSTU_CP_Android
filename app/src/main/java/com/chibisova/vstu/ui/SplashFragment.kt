@@ -1,14 +1,11 @@
 package com.chibisova.vstu.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.view.animation.AnimationUtils
 import com.chibisova.vstu.App
 import com.chibisova.vstu.R
 import com.chibisova.vstu.navigation.NavigationStartApp
 import com.chibisova.vstu.presenters.SplashPresenter
 import com.chibisova.vstu.views.SplashView
-import kotlinx.android.synthetic.main.fragment_splash.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -35,12 +32,6 @@ class SplashFragment : MvpAppCompatFragment(R.layout.fragment_splash), SplashVie
     override fun onStart() {
         super.onStart()
         presenter.startApp()
-    }
-
-    @SuppressLint("ResourceType")
-    override fun startAnimation() {
-        val anim = AnimationUtils.loadAnimation(context, R.animator.pulse_logo_app)
-        logo_iv.startAnimation(anim)
     }
 
     override fun startApp(isAuthUser: Boolean) {

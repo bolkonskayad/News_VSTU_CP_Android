@@ -13,7 +13,6 @@ class SplashPresenter @Inject constructor(
 ) : MvpPresenter<SplashView>() {
 
     fun startApp() {
-        viewState.startAnimation()
         userRepository.containsUser()
             .delay(500, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
