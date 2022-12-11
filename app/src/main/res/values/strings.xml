@@ -23,4 +23,5 @@
     <string name="add_New_error_save_New_message">Ошибка при добавлении. Попробуйте снова</string>
     <string name="view_search_toolbar_title_text">Новости</string>
     <string name="New_feed_empty_filter_message">По результатам запроса ничего не найдено</string>
+    <string name="empty_profile_news">Вы можете добавить новость, нажав на центральную кнопку нижнего меню</string>
 </resources>

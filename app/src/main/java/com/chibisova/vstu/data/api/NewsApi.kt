@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface NewsApi {
 
-    @GET("News")
+    @GET("news")
     fun getNews(): Single<List<NetworkNews>>
 
 }

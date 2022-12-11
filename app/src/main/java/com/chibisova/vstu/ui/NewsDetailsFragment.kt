@@ -24,7 +24,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 
-class NewDetailsFragment : BaseFragment(), NewDetailsView {
+class NewsDetailsFragment : BaseFragment(), NewDetailsView {
 
     @Inject
     lateinit var presenterProvider: Provider<NewsDetailsPresenter>
@@ -36,7 +36,7 @@ class NewDetailsFragment : BaseFragment(), NewDetailsView {
     @Inject
     lateinit var bottomBarVisible: BottomBarVisible
 
-    private val args: NewDetailsFragmentArgs by navArgs()
+    private val args: NewsDetailsFragmentArgs by navArgs()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

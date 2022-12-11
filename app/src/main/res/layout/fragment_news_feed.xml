@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/New_list_rv"
+                    android:id="@+id/news_list_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone" />
@@ -51,7 +51,11 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     tools:text= "Сообщение"
-                    android:visibility="gone" />
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
             </LinearLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

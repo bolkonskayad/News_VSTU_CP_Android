@@ -16,7 +16,7 @@ import com.chibisova.vstu.common.RefresherOwner
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.InputModeManager
 import com.chibisova.vstu.common.managers.SnackBarManager
-import com.chibisova.vstu.ui.controllers.NewController
+import com.chibisova.vstu.ui.controllers.NewsController
 import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.navigation.NavigationNewDetails
 import com.chibisova.vstu.presenters.NewsFeedPresenter
@@ -53,7 +53,7 @@ class NewsFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, N
     lateinit var easyAdapter: EasyAdapter
 
     @Inject
-    lateinit var NewController: NewController
+    lateinit var newsController: NewsController
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -100,13 +100,13 @@ class NewsFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, N
     }
 
     private fun initRecyclerView() {
-        with(New_list_rv) {
+        with(news_list_rv) {
             adapter = easyAdapter
             layoutManager = LinearLayoutManager(context)
         }
-        NewController.NewDetailsClickListener = { presenter.openDetails(it) }
+        newsController.newsDetailsClickListener = { presenter.openDetails(it) }
 
-        NewController.shareClickListener = {
+        newsController.shareClickListener = {
             presenter.shareNewInSocialNetworks(it)
         }
     }
@@ -123,21 +123,21 @@ class NewsFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, N
 
     override fun showNews(newsList: List<News>) {
         val itemList = ItemList.create().apply {
-            addAll(newsList, NewController)
+            addAll(newsList, newsController)
         }
         easyAdapter.setItems(itemList)
-        New_list_rv.visibility = View.VISIBLE
+        news_list_rv.visibility = View.VISIBLE
         state_error_tv.visibility = View.GONE
     }
 
     override fun showErrorState() {
-        New_list_rv.visibility = View.GONE
+        news_list_rv.visibility = View.GONE
         state_error_tv.text = getString(R.string.errorDownloadNewState_message)
         state_error_tv.visibility = View.VISIBLE
     }
 
     override fun showEmptyFilterErrorState() {
-        New_list_rv.visibility = View.GONE
+        news_list_rv.visibility = View.GONE
         state_error_tv.visibility = View.VISIBLE
         state_error_tv.text = getString(R.string.New_feed_empty_filter_message)
     }

@@ -11,13 +11,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
-    private val NewsApi: NewsApi,
+    private val newsApi: NewsApi,
     private val networkMapper: NewDataMapper<NetworkNews>,
     private val storage: Storage
 ) : NewsRepository {
 
     //Получаем список новостей с сервера, добавляем в бд данные и берем поток уже с бд
-    override fun getNews(): Single<List<News>> = NewsApi
+    override fun getNews(): Single<List<News>> = newsApi
         .getNews()
         .map { networkMapper.transformList(it) }
         .doOnSuccess {

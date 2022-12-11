@@ -18,7 +18,7 @@ interface FragmentContentComponent {
 
     fun inject(addNewsFragment: AddNewsFragment)
 
-    fun inject(NewDetailsFragment: NewDetailsFragment)
+    fun inject(NewsDetailsFragment: NewsDetailsFragment)
 
     fun inject(NewFeedFragment: NewsFeedFragment)
 

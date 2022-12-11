@@ -7,13 +7,14 @@ import android.view.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.chibisova.vstu.App
 import com.chibisova.vstu.R
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.SnackBarManager
-import com.chibisova.vstu.ui.controllers.NewController
+import com.chibisova.vstu.ui.controllers.NewsController
 import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.domain.model.User
 import com.chibisova.vstu.navigation.NavigationAuth
@@ -49,7 +50,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
     lateinit var easyAdapter: EasyAdapter
 
     @Inject
-    lateinit var NewController: NewController
+    lateinit var NewsController: NewsController
 
     private var dialogLogout: AlertDialog? = null
 
@@ -77,8 +78,8 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     private fun initView() {
-        NewController.NewDetailsClickListener = { presenter.openDetails(it) }
-        NewController.shareClickListener = {
+        NewsController.newsDetailsClickListener = { presenter.openDetails(it) }
+        NewsController.shareClickListener = {
             presenter.shareNewInSocialNetwork(it)
         }
         with(news_list_profile_rv) {
@@ -115,8 +116,9 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     override fun showNews(newsList: List<News>) {
+        empty_state_text.isVisible = newsList.isEmpty()
         val itemList = ItemList.create().apply {
-            addAll(newsList, NewController)
+            addAll(newsList, NewsController)
         }
         easyAdapter.setItems(itemList)
     }
@@ -127,7 +129,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
     override fun showProfile(user: User) {
         Glide.with(this)
-            .load("https://img.pngio.com/avatar-1-length-of-human-face-hd-png-download-6648260-free-human-face-png-840_640.png")
+            .load("https://sun9-57.userapi.com/impg/Gk98ezXDJ8x0RXnJug_qZvICi-Tg7M4QdqVHfw/3JbKPzDI4xg.jpg?size=607x1080&quality=95&sign=00016d44c31cdf54f2366601692aacbc&type=album")
             .circleCrop()
             .into(avatars_iv)
         nickname_tv.text = user.firstName
@@ -163,12 +165,14 @@ class ProfileFragment : BaseFragment(), ProfileView {
     override fun showLoadState() {
         load_news_pb.visibility = View.VISIBLE
         news_list_profile_rv.visibility = View.GONE
+        empty_state_text.isVisible = false
     }
 
 
     override fun hideLoadState() {
         news_list_profile_rv.visibility = View.VISIBLE
         load_news_pb.visibility = View.GONE
+        empty_state_text.isVisible = true
     }
 
     override fun openNewDetails(data: News) {

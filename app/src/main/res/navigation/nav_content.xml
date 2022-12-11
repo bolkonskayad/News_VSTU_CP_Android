@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_news_feed" >
         <action
             android:id="@+id/action_NewFeedFragment_to_NewDetailsFragment"
-            app:destination="@id/NewDetailsFragment" />
+            app:destination="@id/NewsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_NewDetailsFragment"
-            app:destination="@id/NewDetailsFragment"
+            app:destination="@id/NewsDetailsFragment"
             app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
@@ -30,8 +30,8 @@
         android:label="fragment_add_New"
         tools:layout="@layout/fragment_add_news" />
     <fragment
-        android:id="@+id/NewDetailsFragment"
-        android:name="com.chibisova.vstu.ui.NewDetailsFragment"
+        android:id="@+id/NewsDetailsFragment"
+        android:name="com.chibisova.vstu.ui.NewsDetailsFragment"
         android:label="fragment_New_details"
         tools:layout="@layout/fragment_news_details" >
         <argument

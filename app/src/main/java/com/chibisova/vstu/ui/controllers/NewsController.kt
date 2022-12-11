@@ -11,9 +11,9 @@ import com.chibisova.vstu.domain.model.News
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class NewController: BindableItemController<News, NewController.Holder>() {
+class NewsController: BindableItemController<News, NewsController.Holder>() {
 
-    var NewDetailsClickListener: ((News) -> Unit) = {}
+    var newsDetailsClickListener: ((News) -> Unit) = {}
     var shareClickListener: ((News) -> Unit) = {}
 
     override fun createViewHolder(parent: ViewGroup?) = Holder(parent)
@@ -35,7 +35,7 @@ class NewController: BindableItemController<News, NewController.Holder>() {
             if (data.isFavorite){
                 favoriteBtn.isChecked = true
             }
-            itemView.setOnClickListener { NewDetailsClickListener(data) }
+            itemView.setOnClickListener { newsDetailsClickListener(data) }
             shareBtn.setOnClickListener { shareClickListener(data) }
         }
     }
