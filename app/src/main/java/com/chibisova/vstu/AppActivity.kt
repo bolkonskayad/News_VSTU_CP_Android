@@ -90,7 +90,7 @@ class AppActivity : AppCompatActivity(), NavigationStartApp, NavigationContent,
     }
 
     override fun saveImg(imgBtmp: Bitmap): String? {
-        val saveDir = File(cacheDir, "meme")
+        val saveDir = File(cacheDir, "New")
         return try {
             if (!saveDir.exists()) saveDir.mkdir()
             val file = File(saveDir, getImgFileName())
@@ -108,7 +108,7 @@ class AppActivity : AppCompatActivity(), NavigationStartApp, NavigationContent,
         }
     }
 
-    private fun getImgFileName(): String = "Meme_${System.currentTimeMillis()}"
+    private fun getImgFileName(): String = "New_${System.currentTimeMillis()}"
 
     override fun setAdjustPan() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)

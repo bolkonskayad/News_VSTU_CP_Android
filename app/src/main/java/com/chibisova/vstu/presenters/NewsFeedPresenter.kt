@@ -1,53 +1,53 @@
 package com.chibisova.vstu.presenters
 
 import com.chibisova.vstu.common.base_view.BasePresenter
-import com.chibisova.vstu.common.exceptions.EmptyMemesDatabaseException
-import com.chibisova.vstu.domain.model.Meme
-import com.chibisova.vstu.domain.repository.MemeRepository
+import com.chibisova.vstu.common.exceptions.EmptyNewsDatabaseException
+import com.chibisova.vstu.domain.model.News
+import com.chibisova.vstu.domain.repository.NewsRepository
 import com.chibisova.vstu.common.exceptions.NETWORK_EXCEPTIONS
-import com.chibisova.vstu.views.MemeFeedView
+import com.chibisova.vstu.views.NewsFeedView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import java.util.*
 import javax.inject.Inject
 
-class MemesFeedPresenter @Inject constructor(
-    private val memeRepository: MemeRepository
-) : BasePresenter<MemeFeedView>() {
+class NewsFeedPresenter @Inject constructor(
+    private val newsRepository: NewsRepository
+) : BasePresenter<NewsFeedView>() {
 
     init {
-        loadMemes()
+        loadNews()
     }
 
-    private var memeList: List<Meme>? = null
-    private var memeSearchList: List<Meme>? = null
+    private var newsList: List<News>? = null
+    private var newsSearchList: List<News>? = null
 
     private var searchText: String = ""
     private var isSearchMode: Boolean = false
 
-    private fun loadMemes() {
-        memeRepository.getMemes()
+    private fun loadNews() {
+        newsRepository.getNews()
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { viewState.showLoadState() }
             .doFinally { viewState.hideLoadState() }
             .subscribe({
-                memeList = it
-                showMemes(it)
+                newsList = it
+                showNews(it)
             }, {
                 errorProcessing(it)
             })
     }
 
-    fun updateMemes() {
-        memeRepository.getMemes()
+    fun updateNews() {
+        newsRepository.getNews()
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { viewState.showRefresh() }
             .doFinally { viewState.hideRefresh() }
             .subscribe({
-                memeList = it
+                newsList = it
                 if (isSearchMode) {
-                    filterMemes()
+                    filterNews()
                 }else {
-                    showMemes(it)
+                    showNews(it)
                 }
             }, {
                 errorProcessing(it)
@@ -56,20 +56,20 @@ class MemesFeedPresenter @Inject constructor(
     }
 
 
-    private fun showMemes(memeList: List<Meme>) {
-        if (memeList.isNotEmpty()) {
-            viewState.showMemes(memeList)
+    private fun showNews(newsList: List<News>) {
+        if (newsList.isNotEmpty()) {
+            viewState.showNews(newsList)
         } else {
-            errorProcessing(EmptyMemesDatabaseException())
+            errorProcessing(EmptyNewsDatabaseException())
         }
     }
 
-    fun openDetails(meme: Meme) {
-        viewState.openMemeDetails(meme)
+    fun openDetails(News: News) {
+        viewState.openNewDetails(News)
     }
 
     private fun errorProcessing(throwable: Throwable) {
-        memeList = null
+        newsList = null
         if (NETWORK_EXCEPTIONS.contains(throwable.javaClass)) {
             viewState.showErrorSnackbar("Отсутствует подключение к интернету \nПодключитесь к сети и попробуйте снова")
         }
@@ -79,38 +79,38 @@ class MemesFeedPresenter @Inject constructor(
     fun startFilter() {
         isSearchMode = true
         viewState.enableSearchView()
-        filterMemes()
+        filterNews()
     }
 
     fun updateSearchText(searchText: String) {
         this.searchText = searchText
-        filterMemes()
+        filterNews()
     }
 
-    //Завершаем фильтрацию и показываем начальный список мемов
+    //Завершаем фильтрацию и показываем начальный список новости
     fun stopFilter() {
         isSearchMode = false
         searchText = ""
         viewState.disableSearchView()
-        memeList?.let { viewState.showMemes(it) }
-        memeSearchList = null
+        newsList?.let { viewState.showNews(it) }
+        newsSearchList = null
     }
 
-    private fun filterMemes() {
-        memeList?.let { memeList ->
-            memeSearchList = memeList.filter { meme ->
-                meme.title.toLowerCase(Locale.ROOT).contains(searchText.toLowerCase(Locale.ROOT))
+    private fun filterNews() {
+        newsList?.let { NewList ->
+            newsSearchList = NewList.filter { New ->
+                New.title.toLowerCase(Locale.ROOT).contains(searchText.toLowerCase(Locale.ROOT))
             }
-            if (memeSearchList!!.isNotEmpty()) {
-                showMemes(memeSearchList!!)
+            if (newsSearchList!!.isNotEmpty()) {
+                showNews(newsSearchList!!)
             } else {
                 viewState.showEmptyFilterErrorState()
             }
         }
     }
 
-    fun shareMemeInSocialNetworks(meme: Meme) {
-        viewState.shareMeme(meme)
+    fun shareNewInSocialNetworks(News: News) {
+        viewState.shareNew(News)
     }
 
 }

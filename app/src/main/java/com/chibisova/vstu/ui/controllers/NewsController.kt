@@ -7,35 +7,35 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.chibisova.vstu.R
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.domain.model.News
 import ru.surfstudio.android.easyadapter.controller.BindableItemController
 import ru.surfstudio.android.easyadapter.holder.BindableViewHolder
 
-class MemeController: BindableItemController<Meme, MemeController.Holder>() {
+class NewController: BindableItemController<News, NewController.Holder>() {
 
-    var memeDetailsClickListener: ((Meme) -> Unit) = {}
-    var shareClickListener: ((Meme) -> Unit) = {}
+    var NewDetailsClickListener: ((News) -> Unit) = {}
+    var shareClickListener: ((News) -> Unit) = {}
 
     override fun createViewHolder(parent: ViewGroup?) = Holder(parent)
 
-    override fun getItemId(data: Meme) = data.id.hashCode().toString()
+    override fun getItemId(data: News) = data.id.hashCode().toString()
 
-    inner class Holder(parent: ViewGroup?): BindableViewHolder<Meme>(
+    inner class Holder(parent: ViewGroup?): BindableViewHolder<News>(
         parent,
-        R.layout.list_item_mem
+        R.layout.list_item_news
     ) {
-        private val photoMeme: ImageView = itemView.findViewById(R.id.photo_meme_iv)
-        private val nameMeme: TextView = itemView.findViewById(R.id.meme_name_tv)
+        private val photoNew: ImageView = itemView.findViewById(R.id.photo_New_iv)
+        private val naNewme: TextView = itemView.findViewById(R.id.New_name_tv)
         private val favoriteBtn: CheckBox = itemView.findViewById(R.id.favorite_chb)
         private val shareBtn: Button = itemView.findViewById(R.id.share_btn)
 
-        override fun bind(data: Meme) {
-            Glide.with(itemView).load(data.photoUrl).into(photoMeme)
-            nameMeme.text = data.title
+        override fun bind(data: News) {
+            Glide.with(itemView).load(data.photoUrl).into(photoNew)
+            naNewme.text = data.title
             if (data.isFavorite){
                 favoriteBtn.isChecked = true
             }
-            itemView.setOnClickListener { memeDetailsClickListener(data) }
+            itemView.setOnClickListener { NewDetailsClickListener(data) }
             shareBtn.setOnClickListener { shareClickListener(data) }
         }
     }

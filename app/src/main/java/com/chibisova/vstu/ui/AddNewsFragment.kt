@@ -21,19 +21,22 @@ import com.chibisova.vstu.R
 import com.chibisova.vstu.common.REQUEST_CODE_PERMISSION_CAMERA
 import com.chibisova.vstu.common.REQUEST_CODE_PERMISSION_GALLERY
 import com.chibisova.vstu.common.base_view.BaseFragment
-import com.chibisova.vstu.common.managers.*
+import com.chibisova.vstu.common.managers.BottomBarVisible
+import com.chibisova.vstu.common.managers.FileManager
+import com.chibisova.vstu.common.managers.PermissionManager
+import com.chibisova.vstu.common.managers.SnackBarManager
 import com.chibisova.vstu.common.params.EXTRA_WAY_GET_IMG
 import com.chibisova.vstu.navigation.NavigationBackPressed
-import com.chibisova.vstu.presenters.AddMemePresenter
+import com.chibisova.vstu.presenters.AddNewsPresenter
 import com.chibisova.vstu.ui.dialogs.AddImgDialog
-import com.chibisova.vstu.views.AddMemeView
-import kotlinx.android.synthetic.main.fragment_add_meme.*
+import com.chibisova.vstu.views.AddNewView
+import kotlinx.android.synthetic.main.fragment_add_news.*
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 import javax.inject.Provider
 
 
-class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
+class AddNewsFragment : BaseFragment(), AddNewView, View.OnClickListener {
 
     companion object {
         private const val REQUEST_DIALOG_WAY_GET_IMG = 100
@@ -42,7 +45,7 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     }
 
     @Inject
-    lateinit var presenterProvider: Provider<AddMemePresenter>
+    lateinit var presenterProvider: Provider<AddNewsPresenter>
     private val presenter by moxyPresenter {
         presenterProvider.get()
     }
@@ -71,7 +74,7 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_add_meme, container, false)
+        return inflater.inflate(R.layout.fragment_add_news, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,18 +84,18 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     }
 
     private fun initToolbar(view: View) {
-        add_meme_toolbar.navigationIcon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_close) }
-        add_meme_toolbar.title = ""
-        (activity as AppCompatActivity).setSupportActionBar(add_meme_toolbar)
-        add_meme_toolbar.setNavigationOnClickListener { navBack.back() }
+        add_New_toolbar.navigationIcon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_close) }
+        add_New_toolbar.title = ""
+        (activity as AppCompatActivity).setSupportActionBar(add_New_toolbar)
+        add_New_toolbar.setNavigationOnClickListener { navBack.back() }
     }
 
     private fun initView(view: View) {
-        create_meme_btn.setOnClickListener(this)
+        create_New_btn.setOnClickListener(this)
         img_close_ibtn.setOnClickListener(this)
         add_img_ibtn.setOnClickListener(this)
 
-        input_title_meme_et.addTextChangedListener(
+        input_title_New_et.addTextChangedListener(
             object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
                 {}
@@ -100,11 +103,11 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
                 override fun afterTextChanged(s: Editable?) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    presenter.updateTitle(input_title_meme_et.text.toString())
+                    presenter.updateTitle(input_title_New_et.text.toString())
                 }
             }
         )
-        input_description_meme_et.addTextChangedListener(
+        input_description_New_et.addTextChangedListener(
             object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
                 {}
@@ -112,7 +115,7 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
                 override fun afterTextChanged(s: Editable?) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    presenter.updateDescription(input_description_meme_et.text.toString())
+                    presenter.updateDescription(input_description_New_et.text.toString())
                 }
             }
         )
@@ -122,7 +125,7 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
         v?.let {
             when (v.id) {
                 R.id.img_close_ibtn -> presenter.deleteImg()
-                R.id.create_meme_btn -> presenter.createMeme()
+                R.id.create_New_btn -> presenter.createNew()
                 R.id.add_img_ibtn -> showAddImgDialog()
             }
         }
@@ -154,20 +157,20 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     }
 
     override fun showImg(url: String) {
-        img_meme_container.visibility = View.VISIBLE
-        Glide.with(this).load(url).into(img_add_meme_iv)
+        img_new_container.visibility = View.VISIBLE
+        Glide.with(this).load(url).into(img_add_new_iv)
     }
 
     override fun hideImg() {
-        img_meme_container.visibility = View.GONE
+        img_new_container.visibility = View.GONE
     }
 
-    override fun disableCreateMemeBtn() {
-        create_meme_btn.isEnabled = false
+    override fun disableCreateNewBtn() {
+        create_New_btn.isEnabled = false
     }
 
-    override fun enableCreateMemeBtn() {
-        create_meme_btn.isEnabled = true
+    override fun enableCreateNewBtn() {
+        create_New_btn.isEnabled = true
     }
 
     override fun showAddImgDialog() {
@@ -179,8 +182,8 @@ class AddMemeFragment : BaseFragment(), AddMemeView, View.OnClickListener {
     }
 
     override fun clearFieldsAndImg() {
-        input_title_meme_et.text = null
-        input_description_meme_et.text = null
+        input_title_New_et.text = null
+        input_description_New_et.text = null
     }
 
     override fun showErrorSnackBar(messageError: String) {

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MemeDetailsFragment">
+    tools:context=".ui.NewDetailsFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/meme_details_toolbar"
+        android:id="@+id/news_details_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Toolbar"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meme_details_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/news_details_toolbar"
         >
 
         <LinearLayout
@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title_meme_tv"
+                android:id="@+id/title_New_tv"
                 style="@style/TitleLargeTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 tools:text="Работай дизайнер! Солнце еще высоко..." />
 
             <ImageView
-                android:id="@+id/img_meme_iv"
+                android:id="@+id/img_New_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:src="@tools:sample/avatars" />
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/standard_margin"
-                android:layout_marginTop="@dimen/margin_prop_meme"
+                android:layout_marginTop="@dimen/margin_prop_New"
                 android:layout_marginEnd="@dimen/standard_margin"
                 android:orientation="horizontal">
 
@@ -89,13 +89,13 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/text_meme_tv"
+                android:id="@+id/text_New_tv"
                 style="@style/TextStandardTv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="@dimen/standard_margin"
                 android:layout_weight="1"
-                tools:text="Описание тестового мема и прочее" />
+                tools:text="Описание новости и прочее" />
         </LinearLayout>
 
     </ScrollView>

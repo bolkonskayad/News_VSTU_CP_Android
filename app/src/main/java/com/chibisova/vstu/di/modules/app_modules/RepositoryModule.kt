@@ -1,9 +1,9 @@
 package com.chibisova.vstu.di.modules.app_modules
 
 import com.chibisova.vstu.data.dto.mappers.UserDtoDataMapper
-import com.chibisova.vstu.data.dto.mappers.meme.MemeDataMapper
-import com.chibisova.vstu.data.dto.mappers.meme.MemeNetworkDataMapper
-import com.chibisova.vstu.data.dto.network.NetworkMeme
+import com.chibisova.vstu.data.dto.mappers.New.NewDataMapper
+import com.chibisova.vstu.data.dto.mappers.New.NewNetworkDataMapper
+import com.chibisova.vstu.data.dto.network.NetworkNews
 import com.chibisova.vstu.data.repository.UserRepositoryImpl
 import com.chibisova.vstu.data.services.local.SharedPreferenceService
 import com.chibisova.vstu.data.services.network.AuthService
@@ -21,7 +21,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideNetworkMemeMapper(): MemeDataMapper<NetworkMeme> = MemeNetworkDataMapper()
+    fun provideNetworkNewMapper(): NewDataMapper<NetworkNews> = NewNetworkDataMapper()
 
     @Provides
     @Singleton

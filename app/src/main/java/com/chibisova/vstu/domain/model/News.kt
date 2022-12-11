@@ -2,7 +2,7 @@ package com.chibisova.vstu.domain.model
 
 import java.io.Serializable
 
-data class Meme(
+data class News(
     val id: Int,
     val title: String,
     val createdDate: Int,

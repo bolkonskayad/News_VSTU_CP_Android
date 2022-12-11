@@ -1,43 +1,43 @@
 package com.chibisova.vstu.data.storage
 
-import com.chibisova.vstu.data.db.MemeDao
-import com.chibisova.vstu.data.dto.local.MemeDbo
-import com.chibisova.vstu.data.dto.mappers.meme.MemeDataMapper
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.data.db.NewsDao
+import com.chibisova.vstu.data.dto.local.NewsDbo
+import com.chibisova.vstu.data.dto.mappers.New.NewDataMapper
+import com.chibisova.vstu.domain.model.News
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class StorageImpl @Inject constructor(
-    private val dao: MemeDao,
-    private val mapper: MemeDataMapper<MemeDbo>
+    private val dao: NewsDao,
+    private val mapper: NewDataMapper<NewsDbo>
 ) : Storage {
 
-    override fun insertUserMeme(memeUser: Meme): Completable = Completable.fromCallable {
-        val dbMeme = mapper.reverseTransform(memeUser)
-        dbMeme.isLocalUserCreated = true
-        dao.insertMeme(dbMeme)
+    override fun insertUserNew(newsUser: News): Completable = Completable.fromCallable {
+        val dbNew = mapper.reverseTransform(newsUser)
+        dbNew.isLocalUserCreated = true
+        dao.insertNew(dbNew)
     }.subscribeOn(Schedulers.io())
 
 
-    override fun insertMemes(memeList: List<Meme>) {
-        val dbMemeList = mapper.reverseTransformList(memeList)
-        dao.insertMemeList(dbMemeList)
+    override fun insertNews(newsList: List<News>) {
+        val dbNewList = mapper.reverseTransformList(newsList)
+        dao.insertNewList(dbNewList)
     }
 
-    override fun getAllMemes(): Single<List<Meme>> = Single.fromCallable {
-        val dbMemeList = dao.getAllMemes()
-        mapper.transformList(dbMemeList)
+    override fun getAllNews(): Single<List<News>> = Single.fromCallable {
+        val dbNewList = dao.getAllNews()
+        mapper.transformList(dbNewList)
     }.subscribeOn(Schedulers.io())
 
 
-    override fun getUserMemes(): Single<List<Meme>> = Single.fromCallable {
-        val dbMemeList = dao.getAllUserMemes()
-        mapper.transformList(dbMemeList)
+    override fun getUserNews(): Single<List<News>> = Single.fromCallable {
+        val dbNewList = dao.getAllUserNews()
+        mapper.transformList(dbNewList)
     }.subscribeOn(Schedulers.io())
 
-    override fun removeMemes(): Completable {
+    override fun removeNews(): Completable {
         TODO("Not yet implemented")
     }
 

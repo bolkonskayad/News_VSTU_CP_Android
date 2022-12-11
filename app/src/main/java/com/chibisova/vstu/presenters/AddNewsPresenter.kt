@@ -1,70 +1,70 @@
 package com.chibisova.vstu.presenters
 
 import com.chibisova.vstu.common.base_view.BasePresenter
-import com.chibisova.vstu.domain.model.Meme
-import com.chibisova.vstu.domain.repository.MemeRepository
-import com.chibisova.vstu.views.AddMemeView
+import com.chibisova.vstu.domain.model.News
+import com.chibisova.vstu.domain.repository.NewsRepository
+import com.chibisova.vstu.views.AddNewView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import java.security.SecureRandom
 import java.util.*
 import javax.inject.Inject
 
-class AddMemePresenter @Inject constructor(
-    private val memeRepository: MemeRepository
-) : BasePresenter<AddMemeView>() {
+class AddNewsPresenter @Inject constructor(
+    private val newsRepository: NewsRepository
+) : BasePresenter<AddNewView>() {
 
-    private var titleMeme: String? = null
-    private var descriptionMeme: String? = null
-    private var photoMemeUrl: String? = null
+    private var titleNew: String? = null
+    private var descriptionNew: String? = null
+    private var photoNewUrl: String? = null
 
     init {
         //По умолчанию делаем кнопку неактивной
-        viewState.disableCreateMemeBtn()
+        viewState.disableCreateNewBtn()
     }
 
     fun updateTitle(title: String) {
-        titleMeme = title
+        titleNew = title
         checkFieldsAndImg()
     }
 
     fun updateDescription(description: String) {
-        descriptionMeme = description
+        descriptionNew = description
         checkFieldsAndImg()
     }
 
     fun updateImg(url: String) {
-        photoMemeUrl = url
+        photoNewUrl = url
         viewState.showImg(url)
         checkFieldsAndImg()
     }
 
     //Проверяем поля на валидность
     private fun checkFieldsAndImg() {
-        if (photoMemeUrl != null &&
-            checkValidTitleInput(titleMeme) &&
-            checkValidDescriptionInput(descriptionMeme)
+        if (photoNewUrl != null &&
+            checkValidTitleInput(titleNew) &&
+            checkValidDescriptionInput(descriptionNew)
         ) {
-            viewState.enableCreateMemeBtn()
+            viewState.enableCreateNewBtn()
         } else {
-            viewState.disableCreateMemeBtn()
+            viewState.disableCreateNewBtn()
         }
     }
 
 
-    //Создание мема из данных и обновления бд
-    fun createMeme() {
-        val meme = Meme(
+    //Создание новости из данных и обновления бд
+    fun createNew() {
+        val News = News(
             SecureRandom().nextInt(),
-            titleMeme!!,
+            titleNew!!,
             getCreatedData(),
-            descriptionMeme!!,
+            descriptionNew!!,
             true,
-            photoMemeUrl!!
+            photoNewUrl!!
         )
-        //Добавляем мем в базу данных и очищаем поля в случае успешного добавления
-        memeRepository.addMeme(meme)
+        //Добавляем новость в базу данных и очищаем поля в случае успешного добавления
+        newsRepository.addNews(News)
             .observeOn(AndroidSchedulers.mainThread())
-            .doFinally { viewState.disableCreateMemeBtn() }
+            .doFinally { viewState.disableCreateNewBtn() }
             .subscribe({
                 clearData()
             }, {
@@ -73,15 +73,15 @@ class AddMemePresenter @Inject constructor(
     }
 
     fun deleteImg() {
-        photoMemeUrl = null
+        photoNewUrl = null
         viewState.hideImg()
         checkFieldsAndImg()
     }
 
     private fun clearData() {
-        titleMeme = null
-        descriptionMeme = null
-        photoMemeUrl = null
+        titleNew = null
+        descriptionNew = null
+        photoNewUrl = null
         viewState.hideImg()
         viewState.clearFieldsAndImg()
     }

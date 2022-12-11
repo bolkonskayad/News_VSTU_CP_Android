@@ -16,13 +16,13 @@ import com.chibisova.vstu.common.RefresherOwner
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.InputModeManager
 import com.chibisova.vstu.common.managers.SnackBarManager
-import com.chibisova.vstu.ui.controllers.MemeController
-import com.chibisova.vstu.domain.model.Meme
-import com.chibisova.vstu.navigation.NavigationMemeDetails
-import com.chibisova.vstu.presenters.MemesFeedPresenter
+import com.chibisova.vstu.ui.controllers.NewController
+import com.chibisova.vstu.domain.model.News
+import com.chibisova.vstu.navigation.NavigationNewDetails
+import com.chibisova.vstu.presenters.NewsFeedPresenter
 import com.chibisova.vstu.ui.custom_view.ToolbarSearchView
-import com.chibisova.vstu.views.MemeFeedView
-import kotlinx.android.synthetic.main.fragment_meme_feed.*
+import com.chibisova.vstu.views.NewsFeedView
+import kotlinx.android.synthetic.main.fragment_news_feed.*
 import moxy.ktx.moxyPresenter
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.android.easyadapter.ItemList
@@ -30,11 +30,11 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 
-class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, MemeFeedView,
+class NewsFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, NewsFeedView,
     RefresherOwner {
 
     @Inject
-    lateinit var presenterProvider: Provider<MemesFeedPresenter>
+    lateinit var presenterProvider: Provider<NewsFeedPresenter>
     private val presenter by moxyPresenter {
         presenterProvider.get()
     }
@@ -47,13 +47,13 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
     lateinit var snackBarManager: SnackBarManager
 
     @Inject
-    lateinit var navMemeDetailsFragment: NavigationMemeDetails
+    lateinit var navNewDetailsFragment: NavigationNewDetails
 
     @Inject
     lateinit var easyAdapter: EasyAdapter
 
     @Inject
-    lateinit var memeController: MemeController
+    lateinit var NewController: NewController
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -64,7 +64,7 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_meme_feed, container, false)
+        return inflater.inflate(R.layout.fragment_news_feed, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,17 +75,17 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
     }
 
     private fun initToolbar() {
-        meme_feed_Stoolbar.onChangeSearchMode = object : ToolbarSearchView.OnChangeSearchModeListener {
+        New_feed_Stoolbar.onChangeSearchMode = object : ToolbarSearchView.OnChangeSearchModeListener {
             override fun onStartSearch() {
                 presenter.startFilter()
             }
 
             override fun onStopSearch() {
                 presenter.stopFilter()
-                meme_feed_Stoolbar.clearSearchText()
+                New_feed_Stoolbar.clearSearchText()
             }
         }
-        meme_feed_Stoolbar.onChangeSearchText = {
+        New_feed_Stoolbar.onChangeSearchText = {
             presenter.updateSearchText(it)
         }
 
@@ -100,14 +100,14 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
     }
 
     private fun initRecyclerView() {
-        with(meme_list_rv) {
+        with(New_list_rv) {
             adapter = easyAdapter
             layoutManager = LinearLayoutManager(context)
         }
-        memeController.memeDetailsClickListener = { presenter.openDetails(it) }
+        NewController.NewDetailsClickListener = { presenter.openDetails(it) }
 
-        memeController.shareClickListener = {
-            presenter.shareMemeInSocialNetworks(it)
+        NewController.shareClickListener = {
+            presenter.shareNewInSocialNetworks(it)
         }
     }
 
@@ -121,25 +121,25 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
         inputModeManager.setAdjustResize()
     }
 
-    override fun showMemes(memeList: List<Meme>) {
+    override fun showNews(newsList: List<News>) {
         val itemList = ItemList.create().apply {
-            addAll(memeList, memeController)
+            addAll(newsList, NewController)
         }
         easyAdapter.setItems(itemList)
-        meme_list_rv.visibility = View.VISIBLE
+        New_list_rv.visibility = View.VISIBLE
         state_error_tv.visibility = View.GONE
     }
 
     override fun showErrorState() {
-        meme_list_rv.visibility = View.GONE
-        state_error_tv.text = getString(R.string.errorDownloadMemeState_message)
+        New_list_rv.visibility = View.GONE
+        state_error_tv.text = getString(R.string.errorDownloadNewState_message)
         state_error_tv.visibility = View.VISIBLE
     }
 
     override fun showEmptyFilterErrorState() {
-        meme_list_rv.visibility = View.GONE
+        New_list_rv.visibility = View.GONE
         state_error_tv.visibility = View.VISIBLE
-        state_error_tv.text = getString(R.string.meme_feed_empty_filter_message)
+        state_error_tv.text = getString(R.string.New_feed_empty_filter_message)
     }
 
     override fun showLoadState() {
@@ -159,34 +159,34 @@ class MemeFeedFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, M
     }
 
     override fun enableSearchView() {
-        meme_feed_Stoolbar.enableSearchMode()
+        New_feed_Stoolbar.enableSearchMode()
     }
 
     override fun disableSearchView() {
-        meme_feed_Stoolbar.disableSearchMode()
+        New_feed_Stoolbar.disableSearchMode()
     }
 
     override fun showErrorSnackbar(message: String) {
         snackBarManager.showErrorMessage(message)
     }
 
-    override fun openMemeDetails(data: Meme) {
-        navMemeDetailsFragment.startMemeDetailsScreen(data)
+    override fun openNewDetails(data: News) {
+        navNewDetailsFragment.startNewDetailsScreen(data)
     }
 
-    override fun shareMeme(meme: Meme) {
-        val shareMeme = Intent.createChooser(Intent().apply {
+    override fun shareNew(News: News) {
+        val shareNew = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, meme.title)
-            putExtra(Intent.EXTRA_STREAM, meme.photoUrl)
+            putExtra(Intent.EXTRA_TEXT, News.title)
+            putExtra(Intent.EXTRA_STREAM, News.photoUrl)
             type = "image/*"
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }, null)
-        startActivity(shareMeme)
+        startActivity(shareNew)
     }
 
     override fun onRefresh() {
-        presenter.updateMemes()
+        presenter.updateNews()
     }
 
     override fun setRefresherState(refresherState: Boolean) {

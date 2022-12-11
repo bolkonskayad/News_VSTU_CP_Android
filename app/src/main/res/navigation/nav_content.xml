@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_content"
-    app:startDestination="@id/memeFeedFragment">
+    app:startDestination="@id/NewFeedFragment">
 
     <fragment
-        android:id="@+id/memeFeedFragment"
-        android:name="com.chibisova.vstu.ui.MemeFeedFragment"
-        android:label="fragment_meme_feed"
-        tools:layout="@layout/fragment_meme_feed" >
+        android:id="@+id/NewFeedFragment"
+        android:name="com.chibisova.vstu.ui.NewsFeedFragment"
+        android:label="fragment_New_feed"
+        tools:layout="@layout/fragment_news_feed" >
         <action
-            android:id="@+id/action_memeFeedFragment_to_memeDetailsFragment"
-            app:destination="@id/memeDetailsFragment" />
+            android:id="@+id/action_NewFeedFragment_to_NewDetailsFragment"
+            app:destination="@id/NewDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -20,22 +20,22 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_memeDetailsFragment"
-            app:destination="@id/memeDetailsFragment"
+            android:id="@+id/action_profileFragment_to_NewDetailsFragment"
+            app:destination="@id/NewDetailsFragment"
             app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
-        android:id="@+id/addMemeFragment"
-        android:name="com.chibisova.vstu.ui.AddMemeFragment"
-        android:label="fragment_add_meme"
-        tools:layout="@layout/fragment_add_meme" />
+        android:id="@+id/addNewFragment"
+        android:name="com.chibisova.vstu.ui.AddNewsFragment"
+        android:label="fragment_add_New"
+        tools:layout="@layout/fragment_add_news" />
     <fragment
-        android:id="@+id/memeDetailsFragment"
-        android:name="com.chibisova.vstu.ui.MemeDetailsFragment"
-        android:label="fragment_meme_details"
-        tools:layout="@layout/fragment_meme_details" >
+        android:id="@+id/NewDetailsFragment"
+        android:name="com.chibisova.vstu.ui.NewDetailsFragment"
+        android:label="fragment_New_details"
+        tools:layout="@layout/fragment_news_details" >
         <argument
-            android:name="meme"
-            app:argType="com.chibisova.vstu.domain.model.Meme" />
+            android:name="news"
+            app:argType="com.chibisova.vstu.domain.model.News" />
     </fragment>
 </navigation>

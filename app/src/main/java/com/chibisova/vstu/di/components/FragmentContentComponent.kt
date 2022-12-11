@@ -16,11 +16,11 @@ import dagger.Subcomponent
 )
 interface FragmentContentComponent {
 
-    fun inject(addMemeFragment: AddMemeFragment)
+    fun inject(addNewsFragment: AddNewsFragment)
 
-    fun inject(memeDetailsFragment: MemeDetailsFragment)
+    fun inject(NewDetailsFragment: NewDetailsFragment)
 
-    fun inject(memeFeedFragment: MemeFeedFragment)
+    fun inject(NewFeedFragment: NewsFeedFragment)
 
     fun inject(profileFragment: ProfileFragment)
 

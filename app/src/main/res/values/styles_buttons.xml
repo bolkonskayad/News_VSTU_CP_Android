@@ -14,7 +14,7 @@
     </style>
 
 
-    <style name="EnableCreateMemeBtn" parent="Widget.MaterialComponents.Button">
+    <style name="EnableCreateNewBtn" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:enabled">true</item>
     </style>
@@ -23,7 +23,7 @@
         <item name="cardBackgroundColor">@color/colorAccent</item>
     </style>
 
-    <style name="DisableCreateMemeBtn" parent="Widget.MaterialComponents.Button">
+    <style name="DisableCreateNewBtn" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/colorAccentTransparent</item>
         <item name="android:enabled">true</item>
     </style>

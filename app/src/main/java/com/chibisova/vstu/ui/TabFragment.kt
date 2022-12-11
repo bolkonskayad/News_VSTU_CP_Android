@@ -9,15 +9,15 @@ import androidx.navigation.ui.NavigationUI
 import com.chibisova.vstu.App
 import com.chibisova.vstu.R
 import com.chibisova.vstu.common.managers.BottomBarVisible
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.navigation.NavigationBackPressed
-import com.chibisova.vstu.navigation.NavigationMemeDetails
+import com.chibisova.vstu.navigation.NavigationNewDetails
 import kotlinx.android.synthetic.main.fragment_tab.*
 
-class TabFragment : Fragment(), NavigationBackPressed, NavigationMemeDetails, BottomBarVisible {
+class TabFragment : Fragment(), NavigationBackPressed, NavigationNewDetails, BottomBarVisible {
 
     companion object {
-        private const val LABEL_MEME_FEED = "fragment_meme_feed"
+        private const val LABEL_New_FEED = "fragment_New_feed"
         private const val LABEL_PROFILE = "fragment_profile"
     }
 
@@ -59,16 +59,16 @@ class TabFragment : Fragment(), NavigationBackPressed, NavigationMemeDetails, Bo
         navControllerTab.popBackStack()
     }
 
-    override fun startMemeDetailsScreen(meme: Meme) {
+    override fun startNewDetailsScreen(news: News) {
         when (navControllerTab.currentDestination?.label) {
-            LABEL_MEME_FEED -> {
+            LABEL_New_FEED -> {
                 val action =
-                    MemeFeedFragmentDirections.actionMemeFeedFragmentToMemeDetailsFragment(meme)
+                    NewsFeedFragmentDirections.actionNewFeedFragmentToNewDetailsFragment(news)
                 navControllerTab.navigate(action)
             }
             LABEL_PROFILE -> {
                 val action =
-                    ProfileFragmentDirections.actionProfileFragmentToMemeDetailsFragment(meme)
+                    ProfileFragmentDirections.actionProfileFragmentToNewDetailsFragment(news)
                 navControllerTab.navigate(action)
             }
         }

@@ -2,11 +2,11 @@ package com.chibisova.vstu.di.modules.app_modules
 
 import android.content.Context
 import androidx.room.Room
-import com.chibisova.vstu.data.db.MemeDao
-import com.chibisova.vstu.data.db.MemeDatabase
-import com.chibisova.vstu.data.dto.local.MemeDbo
-import com.chibisova.vstu.data.dto.mappers.meme.MemeDataMapper
-import com.chibisova.vstu.data.dto.mappers.meme.MemeDbDataMapper
+import com.chibisova.vstu.data.db.NewsDao
+import com.chibisova.vstu.data.db.NewsDatabase
+import com.chibisova.vstu.data.dto.local.NewsDbo
+import com.chibisova.vstu.data.dto.mappers.New.NewDataMapper
+import com.chibisova.vstu.data.dto.mappers.New.NewDbDataMapper
 import com.chibisova.vstu.data.storage.Storage
 import com.chibisova.vstu.data.storage.StorageImpl
 import dagger.Module
@@ -18,29 +18,29 @@ import javax.inject.Singleton
 class StorageModule {
 
     companion object {
-        private const val nameDatabase = "MEME_DATABASE"
+        private const val nameDatabase = "New_DATABASE"
     }
 
     @Provides
     @Singleton
-    fun provideDbMemeMapper(): MemeDataMapper<MemeDbo> = MemeDbDataMapper()
+    fun provideDbNewMapper(): NewDataMapper<NewsDbo> = NewDbDataMapper()
 
     @Provides
     @Singleton
-    fun provideDatabase(context: Context): MemeDatabase =
-        Room.databaseBuilder(context, MemeDatabase::class.java, nameDatabase)
+    fun provideDatabase(context: Context): NewsDatabase =
+        Room.databaseBuilder(context, NewsDatabase::class.java, nameDatabase)
             .fallbackToDestructiveMigration()
             .build()
 
 
     @Provides
     @Singleton
-    fun provideMemeDao(database: MemeDatabase): MemeDao = database.memeDao()
+    fun provideNewDao(database: NewsDatabase): NewsDao = database.newsDao()
 
 
     @Provides
     @Singleton
-    fun provideStorage(memeDao: MemeDao, mapperDbo: MemeDataMapper<MemeDbo>): Storage =
-        StorageImpl(memeDao, mapperDbo)
+    fun provideStorage(NewsDao: NewsDao, mapperDbo: NewDataMapper<NewsDbo>): Storage =
+        StorageImpl(NewsDao, mapperDbo)
 
 }

@@ -1,17 +1,17 @@
 package com.chibisova.vstu.presenters
 
 import com.chibisova.vstu.common.base_view.BasePresenter
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.domain.repository.UserRepository
-import com.chibisova.vstu.views.MemeDetailsView
+import com.chibisova.vstu.views.NewDetailsView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class MemeDetailsPresenter @Inject constructor(
+class NewsDetailsPresenter @Inject constructor(
     private val userRepository: UserRepository
-) : BasePresenter<MemeDetailsView>() {
+) : BasePresenter<NewDetailsView>() {
 
-    var meme: Meme? = null
+    var news: News? = null
 
     fun bindUserInfoToolbar() {
         userRepository.getUser()
@@ -25,15 +25,15 @@ class MemeDetailsPresenter @Inject constructor(
             })
     }
 
-    fun bindMeme() {
-        meme?.let {
-            viewState.showMeme(it)
+    fun bindNew() {
+        news?.let {
+            viewState.showNew(it)
         }
     }
 
-    fun shareMeme() {
-        meme?.let {
-            viewState.shareMeme(it)
+    fun shareNew() {
+        news?.let {
+            viewState.shareNew(it)
         }
     }
 

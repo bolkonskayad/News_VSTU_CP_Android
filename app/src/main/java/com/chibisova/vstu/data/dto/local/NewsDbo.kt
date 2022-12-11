@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class MemeDbo(
+data class NewsDbo(
 
     @PrimaryKey
     @ColumnInfo(name = "id")

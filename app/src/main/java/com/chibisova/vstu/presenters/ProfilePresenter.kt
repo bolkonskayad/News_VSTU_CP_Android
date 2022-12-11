@@ -1,8 +1,8 @@
 package com.chibisova.vstu.presenters
 
 import com.chibisova.vstu.common.base_view.BasePresenter
-import com.chibisova.vstu.domain.model.Meme
-import com.chibisova.vstu.domain.repository.MemeRepository
+import com.chibisova.vstu.domain.model.News
+import com.chibisova.vstu.domain.repository.NewsRepository
 import com.chibisova.vstu.domain.repository.UserRepository
 import com.chibisova.vstu.views.ProfileView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(
     private val userRepository: UserRepository,
-    private val memeRepository: MemeRepository
+    private val newsRepository: NewsRepository
 ) : BasePresenter<ProfileView>() {
 
     fun bindProfile() {
@@ -27,13 +27,13 @@ class ProfilePresenter @Inject constructor(
             })
     }
 
-    fun loadMemes() {
-        memeRepository.getUserMemes()
+    fun loadNews() {
+        newsRepository.getUserNews()
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { viewState.showLoadState() }
             .doFinally { viewState.hideLoadState() }
             .subscribe({
-                viewState.showMemes(it)
+                viewState.showNews(it)
             }, {
                 viewState.showErrorSnackBarDownloadProfile("Ошибка загрузки профиля")
             })
@@ -54,12 +54,12 @@ class ProfilePresenter @Inject constructor(
             })
     }
 
-    fun openDetails(meme: Meme) {
-        viewState.openMemeDetails(meme)
+    fun openDetails(News: News) {
+        viewState.openNewDetails(News)
     }
 
-    fun shareMemeInSocialNetwork(meme: Meme) {
-        viewState.shareMeme(meme)
+    fun shareNewInSocialNetwork(News: News) {
+        viewState.shareNew(News)
     }
 
 

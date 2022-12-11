@@ -3,7 +3,7 @@ package com.chibisova.vstu.data.dto.network
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class NetworkMeme(
+data class NetworkNews(
     @SerializedName("id")
     val id: String,
 

@@ -1,7 +1,7 @@
 package com.chibisova.vstu.di.modules.content_modules
 
 import com.chibisova.vstu.di.scopes.FragmentContentScope
-import com.chibisova.vstu.domain.repository.MemeRepository
+import com.chibisova.vstu.domain.repository.NewsRepository
 import com.chibisova.vstu.domain.repository.UserRepository
 import com.chibisova.vstu.presenters.*
 import dagger.Module
@@ -12,26 +12,26 @@ class PresenterContentModule {
 
     @Provides
     @FragmentContentScope
-    fun provideMemeFeedPresenter(memeRepository: MemeRepository) =
-        MemesFeedPresenter(memeRepository)
+    fun provideNewFeedPresenter(newsRepository: NewsRepository) =
+        NewsFeedPresenter(newsRepository)
 
     @Provides
     @FragmentContentScope
-    fun provideAddMemePresenter(
-        memeRepository: MemeRepository
-    ) = AddMemePresenter(memeRepository)
+    fun provideAddNewPresenter(
+        newsRepository: NewsRepository
+    ) = AddNewsPresenter(newsRepository)
 
     @Provides
     @FragmentContentScope
     fun provideProfilePresenter(
         userRepository: UserRepository,
-        memeRepository: MemeRepository
-    ) = ProfilePresenter(userRepository, memeRepository)
+        newsRepository: NewsRepository
+    ) = ProfilePresenter(userRepository, newsRepository)
 
     @Provides
     @FragmentContentScope
-    fun provideMemeDetailsPresenter(
+    fun provideNewDetailsPresenter(
         userRepository: UserRepository
-    ) = MemeDetailsPresenter(userRepository)
+    ) = NewsDetailsPresenter(userRepository)
 
 }

@@ -2,7 +2,7 @@ package com.chibisova.vstu.di.modules.app_modules
 
 import com.chibisova.vstu.BuildConfig
 import com.chibisova.vstu.data.api.AuthApi
-import com.chibisova.vstu.data.api.MemesApi
+import com.chibisova.vstu.data.api.NewsApi
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -40,7 +40,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMemeApi(retrofit: Retrofit): MemesApi = retrofit.create(MemesApi::class.java)
+    fun provideNewApi(retrofit: Retrofit): NewsApi = retrofit.create(NewsApi::class.java)
 
     @Provides
     @Singleton

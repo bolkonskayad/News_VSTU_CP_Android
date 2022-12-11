@@ -1,12 +1,12 @@
 package com.chibisova.vstu.di.modules.content_modules
 
-import com.chibisova.vstu.data.api.MemesApi
-import com.chibisova.vstu.data.dto.mappers.meme.MemeDataMapper
-import com.chibisova.vstu.data.dto.network.NetworkMeme
-import com.chibisova.vstu.data.repository.MemeRepositoryImpl
+import com.chibisova.vstu.data.api.NewsApi
+import com.chibisova.vstu.data.dto.mappers.New.NewDataMapper
+import com.chibisova.vstu.data.dto.network.NetworkNews
+import com.chibisova.vstu.data.repository.NewsRepositoryImpl
 import com.chibisova.vstu.data.storage.Storage
 import com.chibisova.vstu.di.scopes.FragmentContentScope
-import com.chibisova.vstu.domain.repository.MemeRepository
+import com.chibisova.vstu.domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 
@@ -16,10 +16,10 @@ class RepositoryContentModule {
 
     @Provides
     @FragmentContentScope
-    fun provideMemeRepository(
-        memesApi: MemesApi,
-        mapperNetwork: MemeDataMapper<NetworkMeme>,
+    fun provideNewRepository(
+        NewsApi: NewsApi,
+        mapperNetwork: NewDataMapper<NetworkNews>,
         storage: Storage
-    ): MemeRepository = MemeRepositoryImpl(memesApi, mapperNetwork, storage)
+    ): NewsRepository = NewsRepositoryImpl(NewsApi, mapperNetwork, storage)
 
 }

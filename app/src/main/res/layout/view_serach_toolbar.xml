@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_title_meme_Til"
+                android:id="@+id/input_title_New_Til"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:counterMaxLength="40"
@@ -43,11 +43,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_title_meme_et"
+                    android:id="@+id/input_title_New_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
-                    android:hint="@string/memeFeed_search_hint"
+                    android:hint="@string/NewFeed_search_hint"
                     android:padding="@dimen/standard_padding"
                     android:singleLine="true"
                     android:textSize="@dimen/standard_text_size" />

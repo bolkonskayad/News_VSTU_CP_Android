@@ -19,7 +19,7 @@
 
     <style name="AppSearchView">
         <item name="searchIcon">@drawable/ic_search</item>
-        <item name="queryHint">@string/memeFeed_search_hint</item>
+        <item name="queryHint">@string/NewFeed_search_hint</item>
         <item name="android:imeActionId">6</item>
     </style>
 

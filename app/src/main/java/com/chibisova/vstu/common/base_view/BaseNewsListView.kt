@@ -1,15 +1,15 @@
 package com.chibisova.vstu.common.base_view
 
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.domain.model.News
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndStrategy
 import moxy.viewstate.strategy.StateStrategyType
 import moxy.viewstate.strategy.alias.Skip
 
 @StateStrategyType(value = AddToEndStrategy::class)
-interface BaseMemeListView: MvpView {
+interface BaseNewsListView: MvpView {
 
-    fun showMemes(memeList: List<Meme>)
+    fun showNews(newsList: List<News>)
 
     @Skip
     fun showLoadState()
@@ -18,9 +18,9 @@ interface BaseMemeListView: MvpView {
     fun hideLoadState()
 
     @Skip
-    fun shareMeme(meme: Meme)
+    fun shareNew(News: News)
 
     @Skip
-    fun openMemeDetails(data: Meme)
+    fun openNewDetails(data: News)
 
 }

@@ -3,7 +3,7 @@ package com.chibisova.vstu.di.modules.content_modules
 import com.chibisova.vstu.common.managers.BottomBarVisible
 import com.chibisova.vstu.di.scopes.FragmentContentScope
 import com.chibisova.vstu.navigation.NavigationBackPressed
-import com.chibisova.vstu.navigation.NavigationMemeDetails
+import com.chibisova.vstu.navigation.NavigationNewDetails
 import com.chibisova.vstu.ui.TabFragment
 import dagger.Module
 import dagger.Provides
@@ -22,5 +22,5 @@ class TabModule(private val tabFragment: TabFragment) {
 
     @Provides
     @FragmentContentScope
-    fun provideNavigationMemeDetails(): NavigationMemeDetails = tabFragment
+    fun provideNavigationNewDetails(): NavigationNewDetails = tabFragment
 }

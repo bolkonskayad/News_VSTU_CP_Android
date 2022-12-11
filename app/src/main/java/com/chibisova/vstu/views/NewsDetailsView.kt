@@ -1,13 +1,13 @@
 package com.chibisova.vstu.views
 
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.domain.model.User
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEnd
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.Skip
 
-interface MemeDetailsView: MvpView {
+interface NewDetailsView: MvpView {
 
     @AddToEndSingle
     fun showUserInfoToolbar(user: User)
@@ -16,9 +16,9 @@ interface MemeDetailsView: MvpView {
     fun showErrorStateUserInfoToolbar()
 
     @AddToEnd
-    fun showMeme(data: Meme)
+    fun showNew(data: News)
 
     @Skip
-    fun shareMeme(meme: Meme)
+    fun shareNew(News: News)
 
 }

@@ -26,10 +26,10 @@
     <dimen name="username_margin_toolbar">10dp</dimen>
     <dimen name="size_progress_bar">48dp</dimen>
 
-    <dimen name="maxLength_title_meme">140</dimen>
-    <dimen name="maxLength_description_meme">1000</dimen>
+    <dimen name="maxLength_title_New">140</dimen>
+    <dimen name="maxLength_description_New">1000</dimen>
     <dimen name="padding_auth_input_fields_top">60dp</dimen>
-    <dimen name="margin_prop_meme">12dp</dimen>
-    <dimen name="radius_card_meme_item">6dp</dimen>
-    <dimen name="margin_bottom_item_meme">20dp</dimen>
+    <dimen name="margin_prop_New">12dp</dimen>
+    <dimen name="radius_card_New_item">6dp</dimen>
+    <dimen name="margin_bottom_item_New">20dp</dimen>
 </resources>

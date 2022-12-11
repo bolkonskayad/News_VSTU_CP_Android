@@ -1,13 +1,13 @@
 package com.chibisova.vstu.views
 
-import com.chibisova.vstu.common.base_view.BaseMemeListView
+import com.chibisova.vstu.common.base_view.BaseNewsListView
 import com.chibisova.vstu.domain.model.User
 import moxy.viewstate.strategy.AddToEndStrategy
 import moxy.viewstate.strategy.StateStrategyType
 import moxy.viewstate.strategy.alias.*
 
 @StateStrategyType(value = AddToEndStrategy::class)
-interface ProfileView: BaseMemeListView {
+interface ProfileView: BaseNewsListView {
 
     fun showDialog()
 

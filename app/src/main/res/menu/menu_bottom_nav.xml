@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/memeFeedFragment"
-        android:icon="@drawable/ic_nav_feed_meme"
+        android:id="@+id/NewFeedFragment"
+        android:icon="@drawable/ic_nav_feed_newss"
         android:title=""
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/addMemeFragment"
-        android:icon="@drawable/ic_nav_add_meme"
+        android:id="@+id/addNewFragment"
+        android:icon="@drawable/ic_nav_add_news"
         android:title=""
         app:showAsAction="ifRoom" />
     <item

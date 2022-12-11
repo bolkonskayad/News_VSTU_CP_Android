@@ -49,16 +49,16 @@ class ToolbarSearchView @JvmOverloads constructor(
             onChangeSearchMode?.onStopSearch()
         }
         clear_text_Ibtn.setOnClickListener {
-            if (input_title_meme_et.text.toString().isEmpty()) {
+            if (input_title_New_et.text.toString().isEmpty()) {
                 onChangeSearchMode?.onStopSearch()
             } else {
-                input_title_meme_et.text?.clear()
+                input_title_New_et.text?.clear()
             }
         }
     }
 
     fun clearSearchText(){
-        input_title_meme_et.text?.clear()
+        input_title_New_et.text?.clear()
     }
 
 
@@ -73,8 +73,8 @@ class ToolbarSearchView @JvmOverloads constructor(
     private fun openSearch() {
         title_container.visibility = View.GONE
         search_container.visibility = View.VISIBLE
-        input_title_meme_et.requestFocus()
-        KeyboardUtil.showKeyboard(input_title_meme_et)
+        input_title_New_et.requestFocus()
+        KeyboardUtil.showKeyboard(input_title_New_et)
     }
 
     private fun closeSearch() {
@@ -84,13 +84,13 @@ class ToolbarSearchView @JvmOverloads constructor(
     }
 
     private fun initChangeSearchTextListener() {
-        input_title_meme_et.addTextChangedListener(object : TextWatcher {
+        input_title_New_et.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(e: Editable?) {
-                onChangeSearchText?.invoke(input_title_meme_et.text.toString())
+                onChangeSearchText?.invoke(input_title_New_et.text.toString())
             }
         })
     }

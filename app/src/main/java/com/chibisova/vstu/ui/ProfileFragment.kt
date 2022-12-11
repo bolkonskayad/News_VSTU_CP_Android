@@ -13,11 +13,11 @@ import com.chibisova.vstu.App
 import com.chibisova.vstu.R
 import com.chibisova.vstu.common.base_view.BaseFragment
 import com.chibisova.vstu.common.managers.SnackBarManager
-import com.chibisova.vstu.ui.controllers.MemeController
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.ui.controllers.NewController
+import com.chibisova.vstu.domain.model.News
 import com.chibisova.vstu.domain.model.User
 import com.chibisova.vstu.navigation.NavigationAuth
-import com.chibisova.vstu.navigation.NavigationMemeDetails
+import com.chibisova.vstu.navigation.NavigationNewDetails
 import com.chibisova.vstu.presenters.ProfilePresenter
 import com.chibisova.vstu.views.ProfileView
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -43,13 +43,13 @@ class ProfileFragment : BaseFragment(), ProfileView {
     lateinit var navLogout: NavigationAuth
 
     @Inject
-    lateinit var navMemeDetailsFragment: NavigationMemeDetails
+    lateinit var navNewDetailsFragment: NavigationNewDetails
 
     @Inject
     lateinit var easyAdapter: EasyAdapter
 
     @Inject
-    lateinit var memeController: MemeController
+    lateinit var NewController: NewController
 
     private var dialogLogout: AlertDialog? = null
 
@@ -77,11 +77,11 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     private fun initView() {
-        memeController.memeDetailsClickListener = { presenter.openDetails(it) }
-        memeController.shareClickListener = {
-            presenter.shareMemeInSocialNetwork(it)
+        NewController.NewDetailsClickListener = { presenter.openDetails(it) }
+        NewController.shareClickListener = {
+            presenter.shareNewInSocialNetwork(it)
         }
-        with(meme_list_profile_rv) {
+        with(news_list_profile_rv) {
             adapter = easyAdapter
             layoutManager = LinearLayoutManager(context)
         }
@@ -90,7 +90,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
     override fun onStart() {
         super.onStart()
         presenter.bindProfile()
-        presenter.loadMemes()
+        presenter.loadNews()
     }
 
 
@@ -114,9 +114,9 @@ class ProfileFragment : BaseFragment(), ProfileView {
         }
     }
 
-    override fun showMemes(memeList: List<Meme>) {
+    override fun showNews(newsList: List<News>) {
         val itemList = ItemList.create().apply {
-            addAll(memeList, memeController)
+            addAll(newsList, NewController)
         }
         easyAdapter.setItems(itemList)
     }
@@ -161,29 +161,29 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     override fun showLoadState() {
-        load_memes_pb.visibility = View.VISIBLE
-        meme_list_profile_rv.visibility = View.GONE
+        load_news_pb.visibility = View.VISIBLE
+        news_list_profile_rv.visibility = View.GONE
     }
 
 
     override fun hideLoadState() {
-        meme_list_profile_rv.visibility = View.VISIBLE
-        load_memes_pb.visibility = View.GONE
+        news_list_profile_rv.visibility = View.VISIBLE
+        load_news_pb.visibility = View.GONE
     }
 
-    override fun openMemeDetails(data: Meme) {
-        navMemeDetailsFragment.startMemeDetailsScreen(data)
+    override fun openNewDetails(data: News) {
+        navNewDetailsFragment.startNewDetailsScreen(data)
     }
 
-    override fun shareMeme(meme: Meme) {
-        val shareMeme = Intent.createChooser(Intent().apply {
+    override fun shareNew(News: News) {
+        val shareNew = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, meme.title)
-            putExtra(Intent.EXTRA_STREAM, meme.photoUrl)
+            putExtra(Intent.EXTRA_TEXT, News.title)
+            putExtra(Intent.EXTRA_STREAM, News.photoUrl)
             type = "image/*"
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }, null)
-        startActivity(shareMeme)
+        startActivity(shareNew)
     }
 
     override fun getActionBar(): ActionBar? =

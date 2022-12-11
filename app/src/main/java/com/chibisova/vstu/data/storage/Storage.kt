@@ -1,19 +1,19 @@
 package com.chibisova.vstu.data.storage
 
-import com.chibisova.vstu.domain.model.Meme
+import com.chibisova.vstu.domain.model.News
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 interface Storage {
 
-    fun insertUserMeme(memeUser: Meme): Completable
+    fun insertUserNew(newsUser: News): Completable
 
-    fun insertMemes(memeList: List<Meme>)
+    fun insertNews(newsList: List<News>)
 
-    fun removeMemes(): Completable
+    fun removeNews(): Completable
 
-    fun getAllMemes(): Single<List<Meme>>
+    fun getAllNews(): Single<List<News>>
 
-    fun getUserMemes(): Single<List<Meme>>
+    fun getUserNews(): Single<List<News>>
 
 }
